@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main Page | Easymovie</title>
+  <link rel="stylesheet" href="style_main.css" />
+  <script src="script.js"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="img/logo-black.png" alt="">
+      <h1>ASYMOVIE</h1>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#Novelties">Novelties</a></li>
+        <li><a href="#Library">Library</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <button class="btn secondary" onclick="navigateTo('signup')">sign up</button>
+      <button class="btn primary" onclick="navigateTo('login')">log in</button>
+      <div class="menu-icon">
+        <img src="img/ion_person.png" alt="">
+      </div>
+    </div>
+    
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Welcome to the <span class="red">movie page</span>!</h1>
+    <p>Find your movie with us</p>
+  </section>
+
+  <!-- Novelties -->
+  <section class="movies-section" id="Novelties">
+    <h2>Novelties</h2>
+    <div class="movies-grid">
+      <!-- Novelties Section -->
+      <div class="movie-card" onclick="viewMovie('him')">
+        <img src="img/him.png" alt="Him">
+        <h3>Him</h3>
+        <p>Today, 23:40</p>
+        <p class="location">Premier Kazakhstan</p>
+        <p class="price">from 1600₸</p>
+      </div>
+
+      <div class="movie-card" onclick="viewMovie('demon-slayer')">
+        <img src="img/demon_slayer.png" alt="Demon Slayer">
+        <h3>Demon Slayer...</h3>
+        <p>Today, 21:40</p>
+        <p class="location">Premier Alatau</p>
+        <p class="price">from 1200₸</p>
+      </div>
+
+      <div class="movie-card" onclick="viewMovie('alter')">
+        <img src="img/alter.png" alt="Altered">
+        <h3>Altered</h3>
+        <p>Today, 21:40</p>
+        <p class="location">Premier Alatau</p>
+        <p class="price">from 1200₸</p>
+      </div>
+
+      <div class="movie-card" onclick="viewMovie('dracula')">
+        <img src="img/dracula.png" alt="Dracula">
+        <h3>Dracula</h3>
+        <p>Today, 23:40</p>
+        <p class="location">Premier Kazakhstan</p>
+        <p class="price">from 1600₸</p>
+      </div>
+
+      <div class="movie-card" onclick="viewMovie('fantastic-four')">
+        <img src="img/four.png" alt="Four">
+        <h3>The Fantastic Four:...</h3>
+        <p>Today, 23:40</p>
+        <p class="location">Premier Kazakhstan</p>
+        <p class="price">from 1600₸</p>
+      </div>
+      <!-- Add more cards as needed -->
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <span>...</span>
+      <a href="#">99</a>
+    </div>
+  </section>
+
+  <!-- Library -->
+  <section class="library" id="Library">
+    <h2>Library</h2>
+    <div class="movies-grid">
+      <div class="movie-card" onclick="navigateTo('movie_page')">
+        <img src="img/him.png" alt="Him">
+        <h3>Him</h3>
+        <p>Action, Adventure</p>
+        <p class="location">91 minutes</p>
+        <p class="price">Watch now!</p>
+      </div>
+      <div class="movie-card" onclick="navigateTo('movie_page')">
+        <img src="img/demon_slayer.png" alt="Demon Slayer">
+        <h3>Demon Slayer...</h3>
+        <p>Action, Adventure</p>
+        <p class="location">91 minutes</p>
+        <p class="price">Watch now!</p>
+      </div>
+      <div class="movie-card" onclick="navigateTo('movie_page')">
+        <img src="img/alter.png" alt="Altered">
+        <h3>Altered</h3>
+        <p>Action, Adventure</p>
+        <p class="location">91 minutes</p>
+        <p class="price">Watch now!</p>
+      </div>
+      <div class="movie-card" onclick="navigateTo('movie_page')">
+        <img src="img/dracula.png" alt="Dracula">
+        <h3>Dracula</h3>
+        <p>Action, Adventure</p>
+        <p class="location">91 minutes</p>
+        <p class="price">Watch now!</p>
+      </div>
+      <div class="movie-card" onclick="navigateTo('movie_page')">
+        <img src="img/four.png" alt="Four">
+        <h3>The Fantastic Four:...</h3>
+        <p>Action, Adventure</p>
+        <p class="location">91 minutes</p>
+        <p class="price">Watch now!</p>
+      </div>
+    </div>
+    <div class="movies-grid">
+      <div class="movie-card" onclick="navigateTo('movie_page')">
+        <img src="img/him.png" alt="Him">
+        <h3>Him</h3>
+        <p>Action, Adventure</p>
+        <p class="location">91 minutes</p>
+        <p class="price">Watch now!</p>
+      </div>
+      <div class="movie-card" onclick="navigateTo('movie_page')">
+        <img src="img/demon_slayer.png" alt="Demon Slayer">
+        <h3>Demon Slayer...</h3>
+        <p>Action, Adventure</p>
+        <p class="location">91 minutes</p>
+        <p class="price">Watch now!</p>
+      </div>
+      <div class="movie-card" onclick="navigateTo('movie_page')">
+        <img src="img/alter.png" alt="Altered">
+        <h3>Altered</h3>
+        <p>Action, Adventure</p>
+        <p class="location">91 minutes</p>
+        <p class="price">Watch now!</p>
+      </div>
+      <div class="movie-card" onclick="navigateTo('movie_page')">
+        <img src="img/dracula.png" alt="Dracula">
+        <h3>Dracula</h3>
+        <p>Action, Adventure</p>
+        <p class="location">91 minutes</p>
+        <p class="price">Watch now!</p>
+      </div>
+      <div class="movie-card" onclick="navigateTo('movie_page')">
+        <img src="img/four.png" alt="Four">
+        <h3>The Fantastic Four:...</h3>
+        <p>Action, Adventure</p>
+        <p class="location">91 minutes</p>
+        <p class="price">Watch now!</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
