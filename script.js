@@ -1,7 +1,76 @@
-// ⚠️ IMPORTANT: Replace this with YOUR actual API key from TMDB
-const API_KEY = 'YOUR_API_KEY_HERE';
-const BASE_URL = 'https://api.themoviedb.org/3';
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+// Movie database
+const movies = {
+  'him': {
+    title: 'Him',
+    rating: '7.8/10',
+    year: '2020',
+    duration: '1h58',
+    genre: 'Drama / Action',
+    synopsis: 'In a world torn apart by conflict, one person must rise above their circumstances to become the hero they never knew they could be. A powerful story of redemption and courage.',
+    director: 'Elena Rodriguez',
+    cast: ['Marcus Thompson', 'Jessica Park', 'David Kumar', 'Lisa Martinez'],
+    image: 'img/him.png',
+    showtime: 'Today, 23:40',
+    location: 'Premier Kazakhstan',
+    price: 'from 1600₸'
+  },
+  'demon-slayer': {
+    title: 'Demon Slayer: Infinity Castle',
+    rating: '8.5/10',
+    year: '2024',
+    duration: '2h15',
+    genre: 'Action / Adventure / Animation',
+    synopsis: 'The epic conclusion to the Demon Slayer saga as Tanjiro and his companions face their ultimate challenge in the mysterious Infinity Castle. A battle that will determine the fate of humanity.',
+    director: 'Haruo Sotozaki',
+    cast: ['Natsuki Hanae', 'Akari Kito', 'Yoshitsugu Matsuoka', 'Hiro Shimono'],
+    image: 'img/demon_slayer.png',
+    showtime: 'Today, 21:40',
+    location: 'Premier Alatau',
+    price: 'from 1200₸'
+  },
+  'alter': {
+    title: 'Alter',
+    rating: '7.8/10',
+    year: '2020',
+    duration: '1h58',
+    genre: 'Drama / Action',
+    synopsis: 'In a world torn apart by conflict, one person must rise above their circumstances to become the hero they never knew they could be. A powerful story of redemption and courage.',
+    director: 'Elena Rodriguez',
+    cast: ['Marcus Thompson', 'Jessica Park', 'David Kumar', 'Lisa Martinez'],
+    image: 'img/alter.png',
+    showtime: 'Today, 21:40',
+    location: 'Premier Alatau',
+    price: 'from 1200₸'
+  },
+  'dracula': {
+    title: 'Dracula',
+    rating: '8.2/10',
+    year: '2024',
+    duration: '2h05',
+    genre: 'Horror / Thriller',
+    synopsis: 'A modern retelling of the classic vampire tale. Count Dracula emerges in the contemporary world, bringing ancient terror to modern society in this gripping supernatural thriller.',
+    director: 'James Patterson',
+    cast: ['Benedict Clarke', 'Emma Stone', 'Tom Hardy', 'Rachel Weisz'],
+    image: 'img/dracula.png',
+    showtime: 'Today, 23:40',
+    location: 'Premier Kazakhstan',
+    price: 'from 1600₸'
+  },
+  'fantastic-four': {
+    title: 'The Fantastic Four: First Steps',
+    rating: '7.5/10',
+    year: '2025',
+    duration: '2h20',
+    genre: 'Action / Adventure / Sci-Fi',
+    synopsis: 'Marvel\'s First Family returns! Watch as four astronauts gain incredible powers after cosmic radiation exposure and must band together to save Earth from an otherworldly threat.',
+    director: 'Matt Shakman',
+    cast: ['Pedro Pascal', 'Vanessa Kirby', 'Joseph Quinn', 'Ebon Moss-Bachrach'],
+    image: 'img/four.png',
+    showtime: 'Today, 23:40',
+    location: 'Premier Kazakhstan',
+    price: 'from 1600₸'
+  }
+};
 
 // Navigate to a page with fade effect
 function navigateTo(page) {
@@ -21,124 +90,17 @@ function viewMovie(movieId) {
   }, 300);
 }
 
-// Fetch popular movies from API
-async function fetchPopularMovies() {
-  try {
-    const response = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`);
-    const data = await response.json();
-    return data.results;
-  } catch (error) {
-    console.error('Error fetching movies:', error);
-    return [];
-  }
-}
-
-// Fetch movie details by ID
-async function fetchMovieDetails(movieId) {
-  try {
-    const response = await fetch(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=en-US&append_to_response=credits`);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching movie details:', error);
-    return null;
-  }
-}
-
-// Load movies into the main page
-async function loadMovies() {
-  const moviesGrid = document.querySelector('.movies-section .movies-grid');
-  const libraryGrid = document.querySelectorAll('.library .movies-grid');
-  
-  if (!moviesGrid) return;
-  
-  // Show loading state
-  moviesGrid.innerHTML = '<p style="color: #fff;">Loading movies...</p>';
-  
-  const movies = await fetchPopularMovies();
-  
-  if (movies.length === 0) {
-    moviesGrid.innerHTML = '<p style="color: #fff;">Failed to load movies. Check your API key.</p>';
-    return;
-  }
-  
-  // Clear loading message
-  moviesGrid.innerHTML = '';
-  
-  // Display first 5 movies in Novelties section
-  movies.slice(0, 5).forEach(movie => {
-    const card = createMovieCard(movie, 'novelty');
-    moviesGrid.appendChild(card);
-  });
-  
-  // Display movies in Library section
-  if (libraryGrid.length > 0) {
-    libraryGrid.forEach((grid, index) => {
-      grid.innerHTML = '';
-      const startIndex = index * 5;
-      movies.slice(startIndex, startIndex + 5).forEach(movie => {
-        const card = createMovieCard(movie, 'library');
-        grid.appendChild(card);
-      });
-    });
-  }
-}
-
-// Create a movie card element
-function createMovieCard(movie, type) {
-  const card = document.createElement('div');
-  card.className = 'movie-card';
-  card.onclick = () => viewMovie(movie.id);
-  
-  const posterUrl = movie.poster_path 
-    ? `${IMAGE_BASE_URL}${movie.poster_path}` 
-    : 'img/placeholder.png';
-  
-  if (type === 'novelty') {
-    card.innerHTML = `
-      <img src="${posterUrl}" alt="${movie.title}">
-      <h3>${movie.title}</h3>
-      <p>⭐ ${movie.vote_average.toFixed(1)}/10</p>
-      <p class="location">${movie.release_date ? movie.release_date.substring(0, 4) : 'TBA'}</p>
-      <p class="price">Watch Now</p>
-    `;
-  } else {
-    card.innerHTML = `
-      <img src="${posterUrl}" alt="${movie.title}">
-      <h3>${movie.title}</h3>
-      <p>Action, Adventure</p>
-      <p class="location">⭐ ${movie.vote_average.toFixed(1)}/10</p>
-      <p class="price">Watch now!</p>
-    `;
-  }
-  
-  return card;
-}
-
 // Load movie details on movie_page.html
-async function loadMovieDetails() {
+function loadMovieDetails() {
   // Get movie ID from URL
   const urlParams = new URLSearchParams(window.location.search);
   const movieId = urlParams.get('id');
   
-  if (!movieId) {
-    console.error('No movie ID provided!');
-    return;
-  }
-  
-  // Show loading state
-  const titleElement = document.querySelector('.movie-title');
-  if (titleElement) {
-    titleElement.textContent = 'Loading...';
-  }
-  
-  // Fetch movie data from API
-  const movie = await fetchMovieDetails(movieId);
+  // Get movie data
+  const movie = movies[movieId];
   
   if (!movie) {
-    if (titleElement) {
-      titleElement.textContent = 'Movie not found!';
-    }
+    console.error('Movie not found!');
     return;
   }
   
@@ -147,57 +109,50 @@ async function loadMovieDetails() {
   
   // Update banner background
   const banner = document.querySelector('.banner');
-  if (banner && movie.backdrop_path) {
-    banner.style.backgroundImage = `url('${IMAGE_BASE_URL}${movie.backdrop_path}')`;
+  if (banner) {
+    banner.style.backgroundImage = `url('${movie.image}')`;
   }
   
   // Update movie title
+  const titleElement = document.querySelector('.movie-title');
   if (titleElement) {
     titleElement.textContent = movie.title;
   }
-  
-  // Get runtime in hours and minutes
-  const hours = Math.floor(movie.runtime / 60);
-  const minutes = movie.runtime % 60;
-  const runtimeText = `${hours}h${minutes}m`;
   
   // Update details (rating, year, duration)
   const detailsElement = document.querySelector('.details');
   if (detailsElement) {
     detailsElement.innerHTML = `
-      <span><i class="star">⭐</i> ${movie.vote_average.toFixed(1)}/10</span>
-      <span>📅 ${movie.release_date ? movie.release_date.substring(0, 4) : 'TBA'}</span>
-      <span>⏱️ Time: ${runtimeText}</span>
-      <span>📍 ${movie.production_countries[0]?.name || 'International'}</span>
+      <span><i class="star">⭐</i> ${movie.rating}</span>
+      <span>📅 ${movie.year}</span>
+      <span>⏱️ Time: ${movie.duration}</span>
+      <span>📍 ${movie.location}</span>
     `;
   }
   
   // Update genre tag
   const tagElement = document.querySelector('.tag');
-  if (tagElement && movie.genres && movie.genres.length > 0) {
-    const genreNames = movie.genres.map(g => g.name).join(' / ');
-    tagElement.textContent = genreNames;
+  if (tagElement) {
+    tagElement.textContent = movie.genre;
   }
   
   // Update synopsis
   const synopsisElement = document.querySelector('.synopsis-text');
   if (synopsisElement) {
-    synopsisElement.textContent = movie.overview || 'No synopsis available.';
+    synopsisElement.textContent = movie.synopsis;
   }
   
   // Update director
-  const director = movie.credits?.crew?.find(person => person.job === 'Director');
   const directorElement = document.querySelector('h3 + p');
   if (directorElement) {
-    directorElement.textContent = director ? director.name : 'Unknown';
+    directorElement.textContent = movie.director;
   }
   
-  // Update cast (first 4 actors)
+  // Update cast
   const castList = document.querySelector('.cast-list');
-  if (castList && movie.credits?.cast) {
-    const topCast = movie.credits.cast.slice(0, 4);
-    castList.innerHTML = topCast.map(actor => 
-      `<span class="cast-pill">${actor.name}</span>`
+  if (castList) {
+    castList.innerHTML = movie.cast.map(actor => 
+      `<span class="cast-pill">${actor}</span>`
     ).join('');
   }
 }
@@ -205,11 +160,6 @@ async function loadMovieDetails() {
 // Initialize page on load
 window.addEventListener('DOMContentLoaded', () => {
   document.body.classList.remove('fade-out');
-  
-  // If we're on the main page, load movies from API
-  if (window.location.pathname.includes('main_page') || window.location.pathname.endsWith('/')) {
-    loadMovies();
-  }
   
   // If we're on the movie page, load the movie details
   if (window.location.pathname.includes('movie_page')) {
