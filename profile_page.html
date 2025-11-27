@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main Page | Easymovie</title>
+  <link rel="stylesheet" href="style_profile.css" />
+  
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="img/logo-black.png" alt="" >
+      <h1>ASYMOVIE</h1>
+    </div>
+    <div class="profile">
+      <h1>Profile</h1>
+    </div>
+    <div class="auth-buttons">
+      <button class="btn secondary" onclick="navigateTo('signup')">sign up</button>
+      <button class="btn primary" onclick="navigateTo('login')">log in</button>
+      <div class="menu-icon dropdown-button" onclick="toggleDropdown()">
+        <img src="img/ion_person.png" alt="">
+        <ul class="dropdown-content">
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#settings">Settings</a></li>
+            <li><a href="#support">Support</a></li>
+        </ul>
+      </div>
+    </div>
+    
+  </header>
+
+
+  <!-- Novelties -->
+  <!-- Profile Page -->
+  <section class="profile-hero">
+    <h1>WELCOME TO YOUR <span class="red">PROFILE!</span></h1>
+    
+    <div class="profile-avatar">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+      </svg>
+    </div>
+
+    <div class="action-cards">
+      <!-- <div class="action-card" onclick="alert('Personal Info feature coming soon!')">
+        <h2>PERSONAL INFO</h2>
+      </div>
+      <div class="action-card" onclick="alert('My tickets feature coming soon!')">
+        <h2>MY TICKETS</h2>
+      </div> -->
+      <div class="action-card" onclick="logoutUser()">
+        <h2>LOG OUT</h2>
+      </div>
+    </div>
+  </section>
+  <script src="script.js"></script>
+</body>
+</html>

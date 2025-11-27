@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Easymovie</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="img/logo.png" alt="">
+      <h1>ASYMOVIE</h1>
+    </div>
+    <div class="signin-container">
+      <div class="signin-content">
+        <h2>Welcome back!</h2>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="btn btn-outline" onclick="navigateTo('login')">LOG IN</button>
+      </div>
+    </div>
+    <div class="login-container">
+      <h2>Create an account</h2>
+      <p>or use your email account:</p>
+      <form id="signupForm" onsubmit="handleSignup(event)">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="email" id="email" placeholder="Email address" required>
+        <input type="password" id="password" placeholder="Password" required minlength="6">
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required minlength="6">
+        <button type="submit" class="btn btn-primary">SIGN UP</button>
+      </form>
+      <a href="#" class="privacy">Access Privacy Policy</a>
+    </div>
+  </div>
+</body>
+</html>
